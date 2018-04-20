@@ -6,6 +6,16 @@ public class Epub
 
     private String isAvailable;
 
+    public String getDownloadLink() {
+        return downloadLink;
+    }
+
+    public void setDownloadLink(String downloadLink) {
+        this.downloadLink = downloadLink;
+    }
+
+    private String downloadLink;
+
     public String getAcsTokenLink ()
     {
         return acsTokenLink;

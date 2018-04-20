@@ -1,9 +1,24 @@
 package model;
+
+
+import java.util.HashMap;
+import java.util.Map;
+
 public class IndustryIdentifiers
 {
     private String type;
-
     private String identifier;
+
+    public int getPageCount() {
+        return pageCount;
+    }
+
+    public void setPageCount(int pageCount) {
+        this.pageCount = pageCount;
+    }
+
+
+    private int pageCount;
 
     public String getType ()
     {
@@ -28,6 +43,11 @@ public class IndustryIdentifiers
     @Override
     public String toString()
     {
-        return "ClassPojo [type = "+type+", identifier = "+identifier+"]";
+if(type.equals("ISBN_13")) {
+    return identifier;
+}
+        return "1";
     }
 }
+
+

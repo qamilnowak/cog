@@ -1,5 +1,10 @@
 package model;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import org.hibernate.validator.constraints.ModCheck;
+
+import java.util.List;
+import model.IndustryIdentifiers;
 public class VolumeInfo
 {
     private ReadingModes readingModes;
@@ -7,6 +12,97 @@ public class VolumeInfo
     private String infoLink;
 
     private String printType;
+
+    public String getSubtitle() {
+        return subtitle;
+    }
+
+    public void setSubtitle(String subtitle) {
+        this.subtitle = subtitle;
+    }
+
+    private String subtitle;
+
+
+    public double getAverageRating() {
+        return averageRating;
+    }
+
+    public void setAverageRating(double averageRating) {
+        this.averageRating = averageRating;
+    }
+
+    public PanelizationSummary getPanelizationSummary() {
+        return panelizationSummary;
+    }
+
+    public void setPanelizationSummary(PanelizationSummary panelizationSummary) {
+        this.panelizationSummary = panelizationSummary;
+    }
+
+    private PanelizationSummary panelizationSummary;
+    private double averageRating;
+
+    public double getRatingsCount() {
+        return ratingsCount;
+    }
+
+    public void setRatingsCount(double ratingsCount) {
+        this.ratingsCount = ratingsCount;
+    }
+
+    private double ratingsCount;
+
+
+    public List getCategories() {
+        return categories;
+    }
+
+    public void setCategories(List categories) {
+        this.categories = categories;
+    }
+
+    private List categories;
+
+    public String[] getAuthors() {
+        return authors;
+    }
+
+    public String getPublishedDate() {
+        return publishedDate;
+    }
+
+    public String getPageCount() {
+        return pageCount;
+    }
+
+    public void setPageCount(String pageCount) {
+        this.pageCount = pageCount;
+    }
+
+    private String pageCount;
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    private String description;
+
+    public void setPublishedDate(String publishedDate) {
+        this.publishedDate = publishedDate;
+    }
+
+    private String publishedDate;
+    public void setAuthors(String[] authors) {
+        this.authors = authors;
+    }
+
+    private String[] authors;
+
 
     private String allowAnonLogging;
 
@@ -22,7 +118,7 @@ public class VolumeInfo
 
     private String contentVersion;
 
-    private IndustryIdentifiers[] industryIdentifiers;
+    private List<IndustryIdentifiers> industryIdentifiers;
 
     private String language;
 
@@ -128,12 +224,12 @@ public class VolumeInfo
         this.contentVersion = contentVersion;
     }
 
-    public IndustryIdentifiers[] getIndustryIdentifiers ()
+    public List<IndustryIdentifiers> getIndustryIdentifiers ()
     {
         return industryIdentifiers;
     }
 
-    public void setIndustryIdentifiers (IndustryIdentifiers[] industryIdentifiers)
+    public void setIndustryIdentifiers (List<IndustryIdentifiers>  industryIdentifiers)
     {
         this.industryIdentifiers = industryIdentifiers;
     }

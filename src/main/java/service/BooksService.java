@@ -1,42 +1,95 @@
 package service;
 
-import java.util.Hashtable;
+import java.io.IOException;
+import java.net.URL;
+import java.util.*;
 
-import model.BookR;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import model.*;
 import org.springframework.stereotype.Service;
+
 
 
 @Service
 public class BooksService {
 	Hashtable<String, BookR> books = new Hashtable<>();
-	public BooksService() {
-		BookR b = new BookR();
-		java.lang.String names[] = {"Ankit","Bohra","Xyz"};
+	ObjectMapper objectMapper = new ObjectMapper();
 
-		b.setAverageRating("1");
-		b.setAuthors(names);
-		b.setDescription("rap");
-		b.setIsbn("123");
-		b.setLanguage("pl");
-		b.setPageCount(1);
-		b.setTitle("rap");
-		b.setPreviewLink("onet.pl");
-		b.setThumbnailUrl("rap.com");
-		b.setSubtitle("a");
-		b.setCategories(names);
-		b.setPublishedDate("wczoraj");
-		b.setPublisher("taco");
-		books.put(b.getIsbn(), b);
+
+	public BooksService() {
+
+		try {
+			objectMapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
+			List<Items> listBook = objectMapper.readValue(new URL("https://gist.githubusercontent.com/qamilnowak/220d87905afcc18547413adce473431c/raw/41ee62c804b8f441389fd0747519a525160a194e/books"),new TypeReference<List<Items>>(){} );
+
+			for(int i=0 ; i < listBook.size() ; i++){
+				BookR c = new BookR();
+				BookR d = new BookR();
+				//java.sql.Timestamp timestamp = java.sql.Timestamp.valueOf();
+				c.setAverageRating(listBook.get(i).getVolumeInfo().getAverageRating());
+				c.setAuthors(listBook.get(i).getVolumeInfo().getAuthors());
+				c.setDescription(listBook.get(i).getVolumeInfo().getDescription());
+				c.setLanguage(listBook.get(i).getVolumeInfo().getLanguage());
+				c.setPageCount(listBook.get(i).getVolumeInfo().getPageCount());
+				c.setTitle(listBook.get(i).getVolumeInfo().getTitle());
+				c.setPreviewLink(listBook.get(i).getVolumeInfo().getPreviewLink());
+				c.setThumbnailUrl(listBook.get(i).getVolumeInfo().getImageLinks().getThumbnail());
+				c.setSubtitle(listBook.get(i).getVolumeInfo().getSubtitle());
+				c.setCategories(listBook.get(i).getVolumeInfo().getCategories());
+				c.setPublishedDate(listBook.get(i).getVolumeInfo().getPublishedDate());
+				c.setPublisher(listBook.get(i).getVolumeInfo().getPublisher());
+				d.setAverageRating(listBook.get(i).getVolumeInfo().getAverageRating());
+				d.setAuthors(listBook.get(i).getVolumeInfo().getAuthors());
+				d.setDescription(listBook.get(i).getVolumeInfo().getDescription());
+				d.setLanguage(listBook.get(i).getVolumeInfo().getLanguage());
+				d.setPageCount(listBook.get(i).getVolumeInfo().getPageCount());
+				d.setTitle(listBook.get(i).getVolumeInfo().getTitle());
+				d.setPreviewLink(listBook.get(i).getVolumeInfo().getPreviewLink());
+				d.setThumbnailUrl(listBook.get(i).getVolumeInfo().getImageLinks().getThumbnail());
+				d.setSubtitle(listBook.get(i).getVolumeInfo().getSubtitle());
+				d.setCategories(listBook.get(i).getVolumeInfo().getCategories());
+				d.setPublishedDate(listBook.get(i).getVolumeInfo().getPublishedDate());
+				d.setPublisher(listBook.get(i).getVolumeInfo().getPublisher());
+				List str6 = listBook.get(i).getVolumeInfo().getIndustryIdentifiers();
+
+
+				System.out.println(str6);
+				try{
+				c.setIsbn(str6.get(0).toString());
+				d.setIsbn(str6.get(1).toString());
+					books.put(c.getIsbn(), c);
+					books.put(d.getIsbn(), d);
+				}catch (Exception e){
+
+				}
+
+			}
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
 
 	}
+
 	public BookR getBooks(String id) {
 		if (books.containsKey(id))
 			return books.get(id);
 		else
 			return null;
 	}
+
+	public BookR getCat(List list) {
+		if (books.containsKey(list))
+			return books.get(list);
+		else
+			return null;
+	}
 	public Hashtable<String, BookR> getAll() {
 		return books;
 	}
+
 }
 

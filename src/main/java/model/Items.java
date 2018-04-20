@@ -1,8 +1,9 @@
 package model;
 
-public class BookN
-{
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
+public class Items
+{
     private SaleInfo saleInfo;
 
     private String id;
@@ -11,6 +12,15 @@ public class BookN
 
     private VolumeInfo volumeInfo;
 
+    @JsonIgnore
+    private SearchInfo searchInfo;
+
+    public void setSearchInfo(SearchInfo searchInfo){
+        this.searchInfo = searchInfo;
+    }
+    public SearchInfo getSearchInfo(){
+        return this.searchInfo;
+    }
     private String selfLink;
 
     private AccessInfo accessInfo;

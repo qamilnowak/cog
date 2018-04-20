@@ -1,32 +1,22 @@
 package model;
 
+import java.util.List;
+
 public class BookR
     {
-        private String[] authors;
-
-        private int pageCount;
-
-        private String title;
-
-        private String averageRating;
-
-        private String previewLink;
-
-        private String description;
-
-        private String thumbnailUrl;
-
         private String isbn;
-
+        private String title;
         private String subtitle;
-
-        private String[] categories;
-
-        private String language;
-
-        private String publishedDate;
-
         private String publisher;
+        private String publishedDate;
+        private String description;
+        private String pageCount;
+        private String thumbnailUrl;
+        private String language;
+        private String previewLink;
+        private double averageRating;
+        private String[] authors;
+        private List categories;
 
         public String[] getAuthors ()
         {
@@ -38,12 +28,12 @@ public class BookR
             this.authors = authors;
         }
 
-        public int getPageCount ()
+        public String getPageCount ()
         {
             return pageCount;
         }
 
-        public void setPageCount (int pageCount)
+        public void setPageCount (String pageCount)
         {
             this.pageCount = pageCount;
         }
@@ -58,12 +48,12 @@ public class BookR
             this.title = title;
         }
 
-        public String getAverageRating ()
+        public double getAverageRating ()
         {
             return averageRating;
         }
 
-        public void setAverageRating (String averageRating)
+        public void setAverageRating (double averageRating)
         {
             this.averageRating = averageRating;
         }
@@ -118,12 +108,12 @@ public class BookR
             this.subtitle = subtitle;
         }
 
-        public String[] getCategories ()
+        public List getCategories ()
         {
             return categories;
         }
 
-        public void setCategories (String[] categories)
+        public void setCategories (List categories)
         {
             this.categories = categories;
         }
