@@ -54,8 +54,6 @@ public class BooksService {
 				d.setPublisher(listBook.get(i).getVolumeInfo().getPublisher());
 				List str6 = listBook.get(i).getVolumeInfo().getIndustryIdentifiers();
 
-
-				System.out.println(str6);
 				try{
 				c.setIsbn(str6.get(0).toString());
 				d.setIsbn(str6.get(1).toString());
