@@ -11,6 +11,10 @@ import org.springframework.context.annotation.Configuration;
 public class DemoApplication {
   //Main
     public static void main(String[] args) {
-        SpringApplication.run(DemoApplication.class, args);
+
+        try{  SpringApplication.run(DemoApplication.class, args);}catch (Exception e){
+
+        }
+
     }
 }

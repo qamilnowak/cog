@@ -10,23 +10,33 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import model.*;
 import org.springframework.stereotype.Service;
 
-
-
 @Service
 public class BooksService {
 	Hashtable<String, BookR> books = new Hashtable<>();
 	ObjectMapper objectMapper = new ObjectMapper();
 
+	Hashtable<String, Rating> ratings = new Hashtable<>();
+	ObjectMapper objectMapper1 = new ObjectMapper();
 
-	public BooksService() {
+	public BooksService() throws Exception{
 
 		try {
 			objectMapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
 			List<Items> listBook = objectMapper.readValue(new URL("https://gist.githubusercontent.com/qamilnowak/220d87905afcc18547413adce473431c/raw/41ee62c804b8f441389fd0747519a525160a194e/books"),new TypeReference<List<Items>>(){} );
 
+			objectMapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
+			List<Items> listBook1 = objectMapper1.readValue(new URL("https://gist.githubusercontent.com/qamilnowak/220d87905afcc18547413adce473431c/raw/41ee62c804b8f441389fd0747519a525160a194e/books"),new TypeReference<List<Items>>(){} );
+
+
 			for(int i=0 ; i < listBook.size() ; i++){
 				BookR c = new BookR();
 				BookR d = new BookR();
+				Rating r = new Rating();
+				if(listBook1.get(i).getVolumeInfo().getAverageRating() >0.0){
+					r.setAverageRating(listBook1.get(i).getVolumeInfo().getAverageRating());
+					r.setAuthor(listBook1.get(i).getVolumeInfo().getAuthors());
+				}
+
 				//java.sql.Timestamp timestamp = java.sql.Timestamp.valueOf();
 				c.setAverageRating(listBook.get(i).getVolumeInfo().getAverageRating());
 				c.setAuthors(listBook.get(i).getVolumeInfo().getAuthors());
@@ -54,11 +64,14 @@ public class BooksService {
 				d.setPublisher(listBook.get(i).getVolumeInfo().getPublisher());
 				List str6 = listBook.get(i).getVolumeInfo().getIndustryIdentifiers();
 
+
 				try{
 				c.setIsbn(str6.get(0).toString());
 				d.setIsbn(str6.get(1).toString());
 					books.put(c.getIsbn(), c);
 					books.put(d.getIsbn(), d);
+					ratings.put(r.getAuthor().toString(), r);
+
 				}catch (Exception e){
 
 				}
@@ -70,6 +83,7 @@ public class BooksService {
 		}
 
 
+
 	}
 
 	public BookR getBooks(String id) {
@@ -79,15 +93,11 @@ public class BooksService {
 			return null;
 	}
 
-	public BookR getCat(List list) {
-		if (books.containsKey(list))
-			return books.get(list);
-		else
-			return null;
-	}
 	public Hashtable<String, BookR> getAll() {
 		return books;
 	}
 
-}
+	public Collection<Rating> getAll1() {
+		return ratings.values();
+}}
 

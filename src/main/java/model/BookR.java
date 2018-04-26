@@ -15,15 +15,15 @@ public class BookR
         private String language;
         private String previewLink;
         private double averageRating;
-        private String[] authors;
+        private List authors;
         private List categories;
 
-        public String[] getAuthors ()
+        public List getAuthors ()
         {
             return authors;
         }
 
-        public void setAuthors (String[] authors)
+        public void setAuthors (List authors)
         {
             this.authors = authors;
         }

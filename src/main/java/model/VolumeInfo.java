@@ -64,7 +64,7 @@ public class VolumeInfo
 
     private List categories;
 
-    public String[] getAuthors() {
+    public List getAuthors() {
         return authors;
     }
 
@@ -97,11 +97,11 @@ public class VolumeInfo
     }
 
     private String publishedDate;
-    public void setAuthors(String[] authors) {
+    public void setAuthors(List authors) {
         this.authors = authors;
     }
 
-    private String[] authors;
+    private List authors;
 
 
     private String allowAnonLogging;
@@ -257,6 +257,6 @@ public class VolumeInfo
     @Override
     public String toString()
     {
-        return "ClassPojo [readingModes = "+readingModes+", infoLink = "+infoLink+", printType = "+printType+", allowAnonLogging = "+allowAnonLogging+", publisher = "+publisher+", canonicalVolumeLink = "+canonicalVolumeLink+", title = "+title+", previewLink = "+previewLink+", imageLinks = "+imageLinks+", contentVersion = "+contentVersion+", industryIdentifiers = "+industryIdentifiers+", language = "+language+", maturityRating = "+maturityRating+"]";
+        return authors.get(0).toString();
     }
 }
