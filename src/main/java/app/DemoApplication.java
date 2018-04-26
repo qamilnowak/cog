@@ -10,11 +10,7 @@ import org.springframework.context.annotation.Configuration;
 @ComponentScan({"controller","service"})
 public class DemoApplication {
   //Main
-    public static void main(String[] args) {
-
-        try{  SpringApplication.run(DemoApplication.class, args);}catch (Exception e){
-
-        }
+    public static void main(String[] args) {SpringApplication.run(DemoApplication.class, args);}
 
     }
-}
+
