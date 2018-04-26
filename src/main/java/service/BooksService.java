@@ -2,6 +2,9 @@ package service;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.time.Instant;
 import java.util.*;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -37,7 +40,6 @@ public class BooksService {
 					r.setAuthor(listBook1.get(i).getVolumeInfo().getAuthors());
 				}
 
-				//java.sql.Timestamp timestamp = java.sql.Timestamp.valueOf();
 				c.setAverageRating(listBook.get(i).getVolumeInfo().getAverageRating());
 				c.setAuthors(listBook.get(i).getVolumeInfo().getAuthors());
 				c.setDescription(listBook.get(i).getVolumeInfo().getDescription());
@@ -63,7 +65,6 @@ public class BooksService {
 				d.setPublishedDate(listBook.get(i).getVolumeInfo().getPublishedDate());
 				d.setPublisher(listBook.get(i).getVolumeInfo().getPublisher());
 				List str6 = listBook.get(i).getVolumeInfo().getIndustryIdentifiers();
-
 
 				try{
 				c.setIsbn(str6.get(0).toString());
