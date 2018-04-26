@@ -71,7 +71,6 @@ public class BooksService {
 					books.put(c.getIsbn(), c);
 					books.put(d.getIsbn(), d);
 					ratings.put(r.getAuthor().toString(), r);
-
 				}catch (Exception e){
 
 				}

@@ -17,27 +17,28 @@ import org.springframework.web.bind.annotation.RestController;
 import service.BooksService;
 
 @RestController
-@RequestMapping("/api/book")
+@RequestMapping("/api")
 public class BooksController {
 
 	@Autowired
 	BooksService bs;
 
-	@RequestMapping("/all")
+	@RequestMapping("/book/all")
 	public Hashtable<String, BookR> getAll() {
 		return bs.getAll();
+	}
+
+
+
+	@RequestMapping("/book/{isbn}")
+	public BookR getBooks(@PathVariable("isbn") String id) {
+
+		return bs.getBooks(id);
 	}
 
 	@RequestMapping("/rating")
 	public  Collection<Rating> getAll1() {
 		return bs.getAll1();
-	}
-
-
-
-	@RequestMapping("{isbn}")
-	public BookR getBooks(@PathVariable("isbn") String id) {
-		return bs.getBooks(id);
 	}
 }
 
